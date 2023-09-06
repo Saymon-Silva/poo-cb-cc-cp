@@ -4,8 +4,12 @@ import model.Pessoa;
 
 public class Corrente extends Conta {
 
-    public Corrente(Pessoa titular,String senha, int numero, int saldo, double limite) {
-        super(titular, numero, senha, saldo, limite);
+    private Pessoa pessoa;
+    private double limite;
+
+    public Corrente(Pessoa titular,String senha, int numero, double saldo, double limite) {
+        super(titular, numero, senha, saldo);
+        this.limite = limite;
     }
 
     private double saque(){
@@ -15,5 +19,15 @@ public class Corrente extends Conta {
     }
     public void transferencia(){
         //logica
+    }
+
+    @Override
+    public String toString() {
+        return "Corrente : " +
+                " Titular : " + pessoa +
+                "; Senha : " + this.getSenha() +
+                "; Numero : " + this.getNumero() +
+                "; Saldo : " + this.getSaldo() +
+                "; Limite : " + limite;
     }
 }

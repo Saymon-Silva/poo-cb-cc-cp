@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Pessoa {
 
     private String endereco;
-    private ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
     public Pessoa(String endereco){
         this.endereco = endereco;
@@ -22,11 +22,11 @@ public abstract class Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public ArrayList<Pessoa> getListaPessoas() {
+    public static ArrayList<Pessoa> getListaPessoas() {
         return listaPessoas;
     }
-    public void setListaPessoas(ArrayList<Pessoa> listaPessoas) {
-        this.listaPessoas = listaPessoas;
+    public static void setListaPessoas(ArrayList<Pessoa> listaPessoas) {
+        listaPessoas = listaPessoas;
     }
     //endregion
 

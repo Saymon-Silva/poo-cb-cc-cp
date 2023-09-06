@@ -4,13 +4,23 @@ import model.Pessoa;
 
 public class Poupanca extends Conta {
 
-    public Poupanca(Pessoa titular, int numero, String senha, int saldo, double limite) {
-        super(titular, numero, senha, saldo, limite);
+    private Pessoa pessoa;
+
+    public Poupanca(Pessoa titular,String senha, int numero, double saldo) {
+        super(titular, numero, senha, saldo);
     }
 
     public double saque(){
         double valorSerSacado = 0;
         //logica aqui
         return valorSerSacado;
+    }
+
+    public String toString() {
+        return "Poupança : " +
+                " Titular : " + pessoa +
+                "; Senha : " + this.getSenha() +
+                "; Numero : " + this.getNumero() +
+                "; Saldo : " + this.getSaldo();
     }
 }

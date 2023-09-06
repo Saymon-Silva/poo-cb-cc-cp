@@ -13,15 +13,15 @@ public class Banco {
     private double taxaServico;
     private ArrayList<Conta> contas = new ArrayList<>();
 
-    public Banco(int agencia, String nome, String endereco, double juros, double taxaServico){
+    public Banco(String nome,int agencia, double juros, double taxaServico,  String endereco){
         this.endereco = endereco;
         this.agencia = agencia;
         this.nome = nome;
         this.juros = juros;
         this.taxaServico = taxaServico;
     }
-    public static Conta cadastrarConta(Pessoa titular, int numero,String senha, double saldo, double limite) {
-       return new Conta(titular,numero, senha, saldo,limite);
+    public static Conta cadastrarConta(Pessoa titular, int numero,String senha, double saldo) {
+       return new Conta(titular,numero, senha, saldo);
     }
 
     //region(get/set)
@@ -62,4 +62,15 @@ public class Banco {
         this.taxaServico = taxaServico;
     }
     //endregion
+
+
+    @Override
+    public String toString() {
+        return "Banco{" +
+                "Nome : " + nome +
+                "; Agencia : " + agencia +
+                "; Juros : " + juros +
+                "; Taxa de Serviço : " + taxaServico +
+                "; Endereço : " + endereco;
+    }
 }

@@ -1,6 +1,9 @@
 import model.Banco;
 import model.Conta;
 import model.Pessoa;
+import model.contas.Corrente;
+import model.contas.Credito;
+import model.contas.Poupanca;
 import model.pessoas.Fisica;
 import model.pessoas.Juridica;
 
@@ -10,16 +13,13 @@ public class Executavel {
 
     public static Scanner sc = new Scanner(System.in);
     public static Scanner scfs = new Scanner(System.in);
-    public static Pessoa teste = new Fisica("1","a",1111);
+    public static Pessoa teste = new Fisica("a","a",1111);
     public static Pessoa pessoa;
-    public static Banco banco;
+    public static Banco banco = new Banco("NoBanco",1771,2.4,0.2,"R. tal, B. Tal, N. 71");
     public static Conta conta;
 
     public static void main(String[] args) {
 
-        System.out.println("Funciona commit pelo amor de deus");
-        criarPessoa();
-        System.out.println(teste);
     }
 
     public static void menu(){
@@ -41,7 +41,7 @@ public class Executavel {
             switch(opcaoPessoa){
                 case 1 -> {criarPessoaFisica(); escolhaFeita = true;}
                 case 2 -> {criarPessoaJuridica(); escolhaFeita = true;}
-                case 3-> System.out.println("a");
+                case 3-> System.out.println("a");//arruma aqui ainda;
                 default -> System.out.println("INSIRA UM VALOR VALIDO!");
             }
         }while(!escolhaFeita);
@@ -99,7 +99,7 @@ public class Executavel {
         }
 
 
-    public static void criarConta(){
+    public static void criarConta() {
 
         System.out.print("Insira o CPF ou CNPJ do titular : ");
         long valorCC = scfs.nextLong();
@@ -107,26 +107,49 @@ public class Executavel {
         System.out.println("Esse é você : " + titular);
         System.out.println("Insira o número da conta : ");
         int numeroConta = sc.nextInt();
-        System.out.println("Insira seu limite : ");
-        double limite = sc.nextDouble();
         System.out.println("Insira o seu saldo inicial");
         double saldo = sc.nextDouble();
         System.out.println("Insira uma senha senha para sua conta : ");
         String senha = scfs.nextLine();
 
-        conta = Banco.cadastrarConta(titular,numeroConta,senha,saldo,limite);
+        conta = Banco.cadastrarConta(titular, numeroConta, senha, saldo);
 
-        System.out.print("""
-                ESCOLHA O TIPO DE CONTA
-                1 - CORRENTE
-                2 - CREDITO
-                3 - POUPANÇA
-                OPÇÃO : """);
-        int opcao = sc.nextInt();
+        int opcao;
+        do {
+            System.out.print("""
+                    ESCOLHA O TIPO DE CONTA
+                    1 - CORRENTE
+                    2 - CREDITO
+                    3 - POUPANÇA
+                    OPÇÃO : """);
+            opcao = sc.nextInt();
 
-        switch(opcao){
-            case 1 ->
-        }
+            switch (opcao) {
+                case 1 -> {
+                    System.out.println("Insira seu limite inicial");
+                    double limite = sc.nextDouble();
+                    conta = new Corrente(titular, senha, numeroConta, saldo, limite);
+                }
+                case 2 -> {
+                    System.out.println("Insira seu limite inicial");
+                    double limite = sc.nextDouble();
+                    int diaFatura;
+                    do {
+                        System.out.println("Qual o melhor dia para o pagamento mensal da fatura : ");
+                        diaFatura = sc.nextInt();
+                    } while (diaFatura > 31 || diaFatura <= 0);
+                    conta = new Credito(titular, senha, numeroConta, saldo, limite, diaFatura);
+                }
+                case 3 -> {
+                    conta = new Poupanca(titular, senha, numeroConta, saldo);
+                }
+                default -> System.out.println("INSIRA UM VALOR VALIDO!");
+            }
+        }while(opcao != 1 || opcao != 2 || opcao != 3);
+
+        System.out.println("Processo finalizado com sucesso!");
+        System.out.println(conta);
     }
+
     //endregiom
 }
