@@ -1,10 +1,11 @@
 package model.contas;
 import model.Conta;
+import model.Pessoa;
 
 public class Corrente extends Conta {
 
-    public Corrente(String titular, int numero, int saldo, double limite) {
-        super(titular, numero, saldo, limite);
+    public Corrente(Pessoa titular,String senha, int numero, int saldo, double limite) {
+        super(titular, numero, senha, saldo, limite);
     }
 
     private double saque(){
