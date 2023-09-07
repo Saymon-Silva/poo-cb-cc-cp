@@ -35,7 +35,7 @@ public class Conta {
     public void credito(){
         //não sei para qual intuito da criação deste metodo.
     }
-    public void saldo(){
-        //usado para mostrar o saldo presente na conta.
+    public double saldo(){
+        return this.getSaldo();
     }
 }

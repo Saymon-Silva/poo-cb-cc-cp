@@ -13,7 +13,6 @@ public class Fisica extends Pessoa {
     }
 
     //region(get/set)
-
     public long getCpf() {
         return cpf;
     }
@@ -31,7 +30,7 @@ public class Fisica extends Pessoa {
     }
     //endregion
     public String toString() {
-        return "Juridica : " +
+        return "Fisica : " +
                 "CPF : " + cpf +
                 "; Nome : " + nomeCompleto +
                 ", Endereço : " + this.getEndereco();

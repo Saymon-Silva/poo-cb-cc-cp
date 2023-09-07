@@ -20,6 +20,8 @@ public class Executavel {
 
     public static void main(String[] args) {
 
+        criarPessoa();
+        System.out.println(pessoa);
     }
 
     public static void menu(){
@@ -39,8 +41,8 @@ public class Executavel {
             int opcaoPessoa = sc.nextInt();
 
             switch(opcaoPessoa){
-                case 1 -> {criarPessoaFisica(); escolhaFeita = true;}
-                case 2 -> {criarPessoaJuridica(); escolhaFeita = true;}
+                case 1 -> {pessoa = criarPessoaFisica(); escolhaFeita = true;}
+                case 2 -> {pessoa = criarPessoaJuridica(); escolhaFeita = true;}
                 case 3-> System.out.println("a");//arruma aqui ainda;
                 default -> System.out.println("INSIRA UM VALOR VALIDO!");
             }
@@ -81,23 +83,23 @@ public class Executavel {
     //endregion
 
     //region(CRIAÇÃO DE CONTA)
-    public static void menuCriarConta(){
+    public static void menuCriarConta() {
+        int opcao;
+        do {
+            System.out.print("""
+                    MENU 
+                    1 - CRIAR CONTA
+                    2 - SAIR
+                    OPÇÃO : """);
+            opcao = sc.nextInt();
 
-        System.out.print("""
-                MENU 
-                1 - CRIAR CONTA
-                2 - SAIR
-                OPÇÃO : """);
-        int opcao = sc.nextInt();
-
-        switch(opcao){
-            case 1 -> criarConta();
-            case 2 -> System.out.println("Arruma aqui");
-            default -> System.out.println("INSIRA UM VALOR VALIDO!");
-
+            switch (opcao) {
+                case 1 -> criarConta();
+                case 2 -> System.out.println("Arruma aqui");
+                default -> System.out.println("INSIRA UM VALOR VALIDO!");
             }
-        }
-
+        }while(opcao != 1);
+    }
 
     public static void criarConta() {
 
@@ -148,6 +150,7 @@ public class Executavel {
         }while(opcao != 1 || opcao != 2 || opcao != 3);
 
         System.out.println("Processo finalizado com sucesso!");
+        System.out.println("Essa é sua conta : ");
         System.out.println(conta);
     }
 

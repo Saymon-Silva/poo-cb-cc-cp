@@ -62,8 +62,6 @@ public class Banco {
         this.taxaServico = taxaServico;
     }
     //endregion
-
-
     @Override
     public String toString() {
         return "Banco{" +
